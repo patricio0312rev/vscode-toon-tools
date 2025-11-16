@@ -123,7 +123,7 @@
     }
   },
   "publisher": "patricio0312rev",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "icon": "icon.png",
   "scripts": {
     "compile": "node esbuild.js",
