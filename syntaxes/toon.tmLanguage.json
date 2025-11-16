@@ -1,0 +1,108 @@
+{
+  "name": "TOON",
+  "scopeName": "source.toon",
+  "fileTypes": ["toon"],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#booleans"
+    },
+    {
+      "include": "#null"
+    },
+    {
+      "include": "#arrays"
+    },
+    {
+      "include": "#objects"
+    },
+    {
+      "include": "#keys"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.toon",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.toon",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.toon",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.toon",
+          "match": "\\b-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.toon",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "null": {
+      "patterns": [
+        {
+          "name": "constant.language.null.toon",
+          "match": "\\bnull\\b"
+        }
+      ]
+    },
+    "arrays": {
+      "patterns": [
+        {
+          "name": "meta.structure.array.toon",
+          "match": "\\[\\d+\\]"
+        }
+      ]
+    },
+    "objects": {
+      "patterns": [
+        {
+          "name": "meta.structure.dictionary.toon",
+          "match": "\\{[^}]*\\}"
+        }
+      ]
+    },
+    "keys": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.toon",
+          "match": "^\\s*[a-zA-Z_][a-zA-Z0-9_]*(?=:)"
+        },
+        {
+          "name": "entity.name.tag.toon",
+          "match": "(?<=\\s)[a-zA-Z_][a-zA-Z0-9_]*(?=:)"
+        }
+      ]
+    }
+  }
+}
