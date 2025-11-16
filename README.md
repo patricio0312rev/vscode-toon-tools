@@ -9,7 +9,10 @@ Convert between JSON and TOON format with live preview. Perfect for LLM workflow
 - One-click copy buttons for both formats
 - Table viewer for visualizing tabular data
 - Size/token analyzer to compare format efficiency
-- Minify command to optimize TOON files
+- Minify and prettify commands for TOON files
+- Syntax highlighting for TOON files
+- Code folding support for nested structures
+- Status bar with real-time file stats
 - Works on selections or entire files
 - Full context menu integration
 
@@ -63,12 +66,37 @@ For example:
    - Compression ratio
    - Efficiency gains
 
-### Minify
+### Minify & Prettify
+
+**Minify:**
 
 1. Open a JSON or TOON file
 2. Open command palette → `TOON: Minify`
 3. Your file will be minified in-place
 4. See how many bytes you saved!
+
+**Prettify:**
+
+1. Open a minified TOON file
+2. Open command palette → `TOON: Prettify`
+3. Your file will be formatted with proper indentation
+4. Makes minified files readable again!
+
+### Syntax Highlighting & Code Folding
+
+- `.toon` files automatically get syntax highlighting
+- Keys, values, arrays, and objects are color-coded
+- Click fold/unfold arrows in the gutter to collapse sections
+- Keyboard shortcuts: `Ctrl/Cmd + Shift + [` to fold, `]` to unfold
+
+### Status Bar
+
+- Open any `.toon` or `.json` file
+- Check the bottom-right status bar for:
+  - File size (bytes/KB/MB)
+  - Estimated token count
+  - Line count
+- Updates in real-time as you edit!
 
 ## Examples
 
@@ -85,7 +113,23 @@ For example:
 
 ### Output TOON:
 
+```toon
+users[2]{id,name,role}:
+  1,Alice,admin
+  2,Bob,user
 ```
+
+### Minified TOON:
+
+```toon
+users[2]{id,name,role}:
+1,Alice,admin
+2,Bob,user
+```
+
+### Prettified TOON:
+
+```toon
 users[2]{id,name,role}:
   1,Alice,admin
   2,Bob,user
@@ -101,6 +145,7 @@ users[2]{id,name,role}:
 | `TOON: JSON → TOON (new file)` | Create new .toon file from JSON       |
 | `TOON: TOON → JSON (new file)` | Create new .json file from TOON       |
 | `TOON: Minify (new file)`      | Create new .min.toon file             |
+| `TOON: Prettify`               | Format TOON with proper indentation   |
 | `TOON: Open Live Preview`      | Open interactive preview panel        |
 | `TOON: Open Table Viewer`      | View tabular data in formatted tables |
 | `TOON: Analyze Size / Tokens`  | Compare JSON vs TOON efficiency       |
@@ -118,6 +163,23 @@ TOON is a human-readable data format optimized for LLM workflows. Learn more at 
 None yet! Report issues on [GitHub](https://github.com/patricio0312rev/vscode-toon-tools/issues).
 
 ## Release Notes
+
+### 0.3.0
+
+New features:
+
+- Syntax highlighting for TOON files with color-coded keys, values, and structures
+- Prettify command to format minified TOON with proper indentation
+- Code folding support for collapsing/expanding nested structures
+- Status bar widget showing real-time file size, token count, and line count
+- Auto-closing brackets and quotes for TOON files
+- Comment support with `#` for TOON files
+
+Improvements:
+
+- Better handling of minified TOON files in prettify and minify
+- Enhanced language configuration for TOON
+- Improved context menu organization
 
 ### 0.2.0
 
