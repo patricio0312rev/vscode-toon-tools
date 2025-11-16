@@ -12,15 +12,25 @@
   ],
   "main": "./out/extension.js",
   "activationEvents": [
+    "onLanguage:toon",
     "onCommand:toon.jsonToToon",
     "onCommand:toon.toonToJson",
-    "onCommand:toon.openPreview",
     "onCommand:toon.jsonToToonFile",
     "onCommand:toon.toonToJsonFile",
+    "onCommand:toon.yamlToToon",
+    "onCommand:toon.toonToYaml",
+    "onCommand:toon.yamlToToonFile",
+    "onCommand:toon.toonToYamlFile",
+    "onCommand:toon.csvToToonFile",
+    "onCommand:toon.toonToCsvFile",
+    "onCommand:toon.xmlToToonFile",
+    "onCommand:toon.toonToXmlFile",
     "onCommand:toon.minify",
     "onCommand:toon.prettify",
+    "onCommand:toon.openPreview",
     "onCommand:toon.openTableViewer",
-    "onCommand:toon.analyzeSize"
+    "onCommand:toon.analyzeSize",
+    "onCommand:toon.validate"
   ],
   "contributes": {
     "languages": [
@@ -61,12 +71,48 @@
         "title": "TOON: TOON → JSON (new file)"
       },
       {
+        "command": "toon.yamlToToon",
+        "title": "TOON: YAML → TOON (replace)"
+      },
+      {
+        "command": "toon.toonToYaml",
+        "title": "TOON: TOON → YAML (replace)"
+      },
+      {
+        "command": "toon.yamlToToonFile",
+        "title": "TOON: YAML → TOON (new file)"
+      },
+      {
+        "command": "toon.toonToYamlFile",
+        "title": "TOON: TOON → YAML (new file)"
+      },
+      {
+        "command": "toon.csvToToonFile",
+        "title": "TOON: CSV → TOON (new file)"
+      },
+      {
+        "command": "toon.toonToCsvFile",
+        "title": "TOON: TOON → CSV (new file)"
+      },
+      {
+        "command": "toon.xmlToToonFile",
+        "title": "TOON: XML → TOON (new file)"
+      },
+      {
+        "command": "toon.toonToXmlFile",
+        "title": "TOON: TOON → XML (new file)"
+      },
+      {
         "command": "toon.minify",
         "title": "TOON: Minify"
       },
       {
         "command": "toon.prettify",
         "title": "TOON: Prettify"
+      },
+      {
+        "command": "toon.validate",
+        "title": "TOON: Validate Syntax"
       },
       {
         "command": "toon.openPreview",
@@ -85,33 +131,78 @@
       "editor/context": [
         {
           "command": "toon.jsonToToon",
-          "when": "editorTextFocus",
+          "when": "editorTextFocus && resourceExtname == .json",
           "group": "1_toon@1"
         },
         {
           "command": "toon.toonToJson",
-          "when": "editorTextFocus",
+          "when": "editorTextFocus && resourceExtname == .toon",
           "group": "1_toon@2"
         },
         {
           "command": "toon.jsonToToonFile",
-          "when": "editorTextFocus",
+          "when": "editorTextFocus && resourceExtname == .json",
           "group": "1_toon@3"
         },
         {
           "command": "toon.toonToJsonFile",
-          "when": "editorTextFocus",
+          "when": "editorTextFocus && resourceExtname == .toon",
           "group": "1_toon@4"
         },
         {
-          "command": "toon.minify",
-          "when": "editorTextFocus",
+          "command": "toon.yamlToToon",
+          "when": "editorTextFocus && (resourceExtname == .yaml || resourceExtname == .yml)",
           "group": "1_toon@5"
         },
         {
-          "command": "toon.prettify",
-          "when": "editorTextFocus",
+          "command": "toon.toonToYaml",
+          "when": "editorTextFocus && resourceExtname == .toon",
           "group": "1_toon@6"
+        },
+        {
+          "command": "toon.yamlToToonFile",
+          "when": "editorTextFocus && (resourceExtname == .yaml || resourceExtname == .yml)",
+          "group": "1_toon@7"
+        },
+        {
+          "command": "toon.toonToYamlFile",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@8"
+        },
+        {
+          "command": "toon.csvToToonFile",
+          "when": "editorTextFocus && resourceExtname == .csv",
+          "group": "1_toon@9"
+        },
+        {
+          "command": "toon.toonToCsvFile",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@10"
+        },
+        {
+          "command": "toon.xmlToToonFile",
+          "when": "editorTextFocus && resourceExtname == .xml",
+          "group": "1_toon@11"
+        },
+        {
+          "command": "toon.toonToXmlFile",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@12"
+        },
+        {
+          "command": "toon.minify",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@13"
+        },
+        {
+          "command": "toon.prettify",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@14"
+        },
+        {
+          "command": "toon.validate",
+          "when": "editorTextFocus && resourceExtname == .toon",
+          "group": "1_toon@15"
         },
         {
           "command": "toon.openPreview",
@@ -132,14 +223,16 @@
     }
   },
   "publisher": "patricio0312rev",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "icon": "icon.png",
   "scripts": {
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
     "vscode:prepublish": "node esbuild.js --production",
     "package": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies"
+    "publish:vscode": "vsce publish --no-dependencies",
+    "publish:ovsx": "ovsx publish --no-dependencies",
+    "publish:all": "npm run publish:vscode && npm run publish:ovsx"
   },
   "keywords": [
     "toon",
@@ -156,14 +249,20 @@
   "packageManager": "pnpm@10.11.0",
   "dependencies": {
     "@toon-format/spec": "^2.0.0",
-    "@toon-format/toon": "^1.0.0"
+    "@toon-format/toon": "^1.0.0",
+    "fast-xml-parser": "^5.3.2",
+    "js-yaml": "^4.1.1",
+    "papaparse": "^5.5.3"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.10.1",
+    "@types/papaparse": "^5.5.0",
     "@types/vscode": "^1.75.0",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.0",
     "esbuild": "^0.27.0",
+    "ovsx": "^0.9.5",
     "typescript": "^5.9.3"
   }
 }
