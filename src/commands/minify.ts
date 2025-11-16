@@ -24,7 +24,8 @@ async function minifyToon(editor: vscode.TextEditor) {
     return;
   }
 
-  const minified = minifyToonString(encode(value));
+  const encoded = encode(value);
+  const minified = minifyToonString(encoded);
 
   await editor.edit((builder) => builder.replace(range, minified));
   
@@ -75,7 +76,7 @@ async function minifyToonToFile(editor: vscode.TextEditor) {
 function minifyToonString(toon: string): string {
   return toon
     .split("\n")
-    .map(line => line.trim())
-    .filter(line => line.length > 0)
+    .filter(line => line.trim().length > 0)
+    .map(line => line.trimEnd())
     .join("\n");
 }
