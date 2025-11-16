@@ -13,7 +13,9 @@
   "activationEvents": [
     "onCommand:toon.jsonToToon",
     "onCommand:toon.toonToJson",
-    "onCommand:toon.openPreview"
+    "onCommand:toon.openPreview",
+    "onCommand:toon.jsonToToonFile",
+    "onCommand:toon.toonToJsonFile"
   ],
   "contributes": {
     "languages": [
@@ -30,15 +32,23 @@
     "commands": [
       {
         "command": "toon.jsonToToon",
-        "title": "TOON: JSON → TOON (selection/file)"
+        "title": "TOON: JSON → TOON (replace)"
       },
       {
         "command": "toon.toonToJson",
-        "title": "TOON: TOON → JSON (selection/file)"
+        "title": "TOON: TOON → JSON (replace)"
       },
       {
         "command": "toon.openPreview",
         "title": "TOON: Open Live Preview"
+      },
+      {
+        "command": "toon.jsonToToonFile",
+        "title": "TOON: JSON → TOON (new file)"
+      },
+      {
+        "command": "toon.toonToJsonFile",
+        "title": "TOON: TOON → JSON (new file)"
       }
     ],
     "menus": {
@@ -46,23 +56,34 @@
         {
           "command": "toon.jsonToToon",
           "when": "editorTextFocus",
-          "group": "navigation"
+          "group": "1_toon@1"
         },
         {
           "command": "toon.toonToJson",
           "when": "editorTextFocus",
-          "group": "navigation"
+          "group": "1_toon@2"
+        },
+        {
+          "command": "toon.jsonToToonFile",
+          "when": "editorTextFocus",
+          "group": "1_toon@3"
+        },
+        {
+          "command": "toon.toonToJsonFile",
+          "when": "editorTextFocus",
+          "group": "1_toon@4"
         },
         {
           "command": "toon.openPreview",
           "when": "editorTextFocus",
-          "group": "navigation"
+          "group": "1_toon@5"
         }
       ]
     }
   },
   "publisher": "patricio0312rev",
   "version": "0.1.0",
+  "icon": "icon.png",
   "scripts": {
     "compile": "node esbuild.js",
     "watch": "node esbuild.js --watch",
