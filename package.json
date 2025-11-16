@@ -1,23 +1,97 @@
 {
   "name": "vscode-toon-tools",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "displayName": "TOON Tools",
+  "description": "Convert between JSON and TOON with live preview for LLM workflows.",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:toon.jsonToToon",
+    "onCommand:toon.toonToJson",
+    "onCommand:toon.openPreview"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "toon",
+        "aliases": [
+          "TOON"
+        ],
+        "extensions": [
+          ".toon"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "toon.jsonToToon",
+        "title": "TOON: JSON → TOON (selection/file)"
+      },
+      {
+        "command": "toon.toonToJson",
+        "title": "TOON: TOON → JSON (selection/file)"
+      },
+      {
+        "command": "toon.openPreview",
+        "title": "TOON: Open Live Preview"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "toon.jsonToToon",
+          "when": "editorTextFocus",
+          "group": "navigation"
+        },
+        {
+          "command": "toon.toonToJson",
+          "when": "editorTextFocus",
+          "group": "navigation"
+        },
+        {
+          "command": "toon.openPreview",
+          "when": "editorTextFocus",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "publisher": "patricio0312rev",
+  "version": "0.1.0",
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "vscode:prepublish": "node esbuild.js --production",
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies"
+  },
+  "keywords": [
+    "toon",
+    "json",
+    "llm",
+    "workflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patricio0312rev/vscode-toon-tools"
+  },
+  "author": "Juan Patricio Marroquin Gavelan",
   "packageManager": "pnpm@10.11.0",
   "dependencies": {
+    "@toon-format/spec": "^2.0.0",
     "@toon-format/toon": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "@types/vscode": "^1.75.0",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.0",
-    "typescript": "^5.9.3",
-    "vscode": "^1.1.37"
+    "esbuild": "^0.27.0",
+    "typescript": "^5.9.3"
   }
 }
