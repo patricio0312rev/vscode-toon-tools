@@ -18,7 +18,7 @@
     "onCommand:toon.jsonToToonFile",
     "onCommand:toon.toonToJsonFile",
     "onCommand:toon.minify",
-    "onCommand:toon.minifyToFile",
+    "onCommand:toon.prettify",
     "onCommand:toon.openTableViewer",
     "onCommand:toon.analyzeSize"
   ],
@@ -27,11 +27,20 @@
       {
         "id": "toon",
         "aliases": [
-          "TOON"
+          "TOON",
+          "toon"
         ],
         "extensions": [
           ".toon"
-        ]
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "toon",
+        "scopeName": "source.toon",
+        "path": "./syntaxes/toon.tmLanguage.json"
       }
     ],
     "commands": [
@@ -53,11 +62,11 @@
       },
       {
         "command": "toon.minify",
-        "title": "TOON: Minify (replace)"
+        "title": "TOON: Minify"
       },
       {
-        "command": "toon.minifyToFile",
-        "title": "TOON: Minify (new file)"
+        "command": "toon.prettify",
+        "title": "TOON: Prettify"
       },
       {
         "command": "toon.openPreview",
@@ -100,7 +109,7 @@
           "group": "1_toon@5"
         },
         {
-          "command": "toon.minifyToFile",
+          "command": "toon.prettify",
           "when": "editorTextFocus",
           "group": "1_toon@6"
         },
@@ -123,7 +132,7 @@
     }
   },
   "publisher": "patricio0312rev",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "icon": "icon.png",
   "scripts": {
     "compile": "node esbuild.js",
@@ -136,7 +145,8 @@
     "toon",
     "json",
     "llm",
-    "workflow"
+    "workflow",
+    "formatter"
   ],
   "repository": {
     "type": "git",
