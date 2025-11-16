@@ -16,7 +16,11 @@
     "onCommand:toon.toonToJson",
     "onCommand:toon.openPreview",
     "onCommand:toon.jsonToToonFile",
-    "onCommand:toon.toonToJsonFile"
+    "onCommand:toon.toonToJsonFile",
+    "onCommand:toon.minify",
+    "onCommand:toon.minifyToFile",
+    "onCommand:toon.openTableViewer",
+    "onCommand:toon.analyzeSize"
   ],
   "contributes": {
     "languages": [
@@ -40,16 +44,32 @@
         "title": "TOON: TOON → JSON (replace)"
       },
       {
-        "command": "toon.openPreview",
-        "title": "TOON: Open Live Preview"
-      },
-      {
         "command": "toon.jsonToToonFile",
         "title": "TOON: JSON → TOON (new file)"
       },
       {
         "command": "toon.toonToJsonFile",
         "title": "TOON: TOON → JSON (new file)"
+      },
+      {
+        "command": "toon.minify",
+        "title": "TOON: Minify (replace)"
+      },
+      {
+        "command": "toon.minifyToFile",
+        "title": "TOON: Minify (new file)"
+      },
+      {
+        "command": "toon.openPreview",
+        "title": "TOON: Open Live Preview"
+      },
+      {
+        "command": "toon.openTableViewer",
+        "title": "TOON: Open Table Viewer"
+      },
+      {
+        "command": "toon.analyzeSize",
+        "title": "TOON: Analyze Size / Tokens"
       }
     ],
     "menus": {
@@ -75,9 +95,29 @@
           "group": "1_toon@4"
         },
         {
-          "command": "toon.openPreview",
+          "command": "toon.minify",
           "when": "editorTextFocus",
           "group": "1_toon@5"
+        },
+        {
+          "command": "toon.minifyToFile",
+          "when": "editorTextFocus",
+          "group": "1_toon@6"
+        },
+        {
+          "command": "toon.openPreview",
+          "when": "editorTextFocus",
+          "group": "2_toon@1"
+        },
+        {
+          "command": "toon.openTableViewer",
+          "when": "editorTextFocus",
+          "group": "2_toon@2"
+        },
+        {
+          "command": "toon.analyzeSize",
+          "when": "editorTextFocus",
+          "group": "2_toon@3"
         }
       ]
     }
